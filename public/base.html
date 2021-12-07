@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <link href="styles/form.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="menu">
+    <a href="index.html"><span class="nonCurrent">Main page</span></a>
+    <a href="formulas.html"><span class="nonCurrent">LaTeX formulas</span></a>
+    <a href="codes.html"><span class="nonCurrent">Codes</span></a>
+    <a href="distros.html"><span class="nonCurrent">Linux Distros</span></a>
+    <a href="beautiful.html"><span class="nonCurrent">Beautiful page</span></a>
+    <a href="interactive.html"><span class="nonCurrent">Calculator</span></a>
+    <a href="base.html"><span class="current">Form</span></a>
+    <a href="forms.html"><span class="nonCurrent">Send your personal data to us!</span></a>
+    <a href="about.html"><span class="nonCurrent">About FOSS</span></a>
+    <a href="formulas.html#F"><span class="nonCurrent">Enter your LaTeX formula!</span></a> <br>
+    <a href="https://www.fsf.org/" target="_blank"><span class="exo"><img src="images/fsf.png" alt="" width="200px"></span></a>
+</div>
+<div class="page-content">
+<h2>Send your opinion about Linux Distro!</h2>
+
+<form action="/distro" method="post" id="back-distros-form">
+    <p id="form-message"></p>
+    <input type="text" name="distro_name" minlength="3" id="distro_name" placeholder="Your favorite Linux Distro!">
+    <input type="text" pattern="\d*" maxlength="1" name="rating" id="rating" placeholder="Rate it! (0-9)">
+    <input type="text" name="opinion" id="opinion" placeholder="Describe your impressions ">
+    <button type="submit" class="button">Send us your opinion!</button>
+</form>
+<br>
+<div class="content">
+    <a href="/distro"><span class="button">Get data</span></a>
+</div>
+<div class="table">
+<table id="distros-table">
+    <thead>
+    <tr>
+        <th>Name of Linux Distro</th>
+        <th>Impressions </th>
+        <th>Rating of Distro</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+</div>
+</div>
+<script>
+    function addRowTodistrosTable(distros) {
+        $('#distros-table > tbody:last-child').append(`<tr><td>${distros.distro_name}</td><td>${distros.opinion}</td><td>${distros.rating}</td></tr>`);
+    }
+
+    function cleardistrosTable() {
+        $("#distros-table > tbody").empty();
+    }
+
+    $('#load').click(() => {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/distro',
+            success: (data) => {
+                data = JSON.parse(data);
+
+                cleardistrosTable();
+
+                for (let item of data) {
+                    addRowTodistrosTable(item);
+                }
+            },
+        });
+    });
+
+    $(() => {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/distro',
+            success: (data) => {
+                data = JSON.parse(data);
+
+                cleardistrosTable();
+
+                for (let item of data) {
+                    addRowTodistrosTable(item);
+                }
+            },
+        });
+    });
+
+    $('#back-distros-form').submit((event) => {
+        event.preventDefault();
+
+        $('#form-message').hide();
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:3000/distro',
+            data: {
+                distro_name: $('#distro_name').val(),
+                rating: $('#rating').val(),
+                opinion: $('#opinion').val(),
+            },
+            success: (data) => {
+                data = JSON.parse(data);
+
+                console.log(data);
+
+                $('#form-message').show();
+                $('#form-message').html(data.message);
+
+
+                if (data.status === true) {
+                    console.log('Карта успешно добавлена!');
+
+                    addRowTodistrosTable(data.distros);
+
+                    $('#distro_name').val('');
+                    $('#rating').val('');
+                    $('#opinion').val('');
+                }
+            },
+        });
+    });
+</script>
+
+</body>
+</html>

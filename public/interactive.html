@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width">
+    <title>Title</title>
+    <link href="styles/calc.css" rel="stylesheet" type="text/css">
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <script src="scripts/script.js"></script>
+</head>
+<body>
+<div class="menu">
+    <a href="index.html"><span class="nonCurrent">Main page</span></a>
+    <a href="formulas.html"><span class="nonCurrent">LaTeX formulas</span></a>
+    <a href="codes.html"><span class="nonCurrent">Codes</span></a>
+    <a href="distros.html"><span class="nonCurrent">Linux Distros</span></a>
+    <a href="beautiful.html"><span class="nonCurrent">Beautiful page</span></a>
+    <a href="interactive.html"><span class="current">Calculator</span></a>
+    <a href="base.html"><span class="nonCurrent">Form</span></a>
+    <a href="forms.html"><span class="nonCurrent">Send your personal data to us!</span></a>
+    <a href="about.html"><span class="nonCurrent">About FOSS</span></a>
+    <a href="formulas.html#F"><span class="nonCurrent">Enter your LaTeX formula!</span></a> <br>
+    <a href="https://www.fsf.org/" target="_blank"><span class="exo"><img src="images/fsf.png" alt="" width="200px"></span></a>
+</div>
+<h2>Calculator</h2>
+
+<div class="span-block">
+    <span onclick="generateRandom()" id="random">Generate random number</span>
+    <span type="submit" onclick="clearField()">Clear it!</span>
+    <span id="enter" type="submit" onclick="calc()">Let's calc it!</span><br>
+    <span><input id="field" type="text" onkeydown="if(event.key === 'Enter') calc()"><br>
+        <label for="field">Enter your expression!</label></span>
+</div>
+    <div id="res" class="result"></div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>MathJax example</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script src="/scripts/formulas.js"></script>
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <link href="styles/formulas.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="menu">
+    <a href="index.html"><span class="nonCurrent">Main page</span></a>
+    <a href="formulas.html"><span class="current">LaTeX formulas</span></a>
+    <a href="codes.html"><span class="nonCurrent">Codes</span></a>
+    <a href="distros.html"><span class="nonCurrent">Linux Distros</span></a>
+    <a href="beautiful.html"><span class="nonCurrent">Beautiful page</span></a>
+    <a href="interactive.html"><span class="nonCurrent">Calculator</span></a>
+    <a href="base.html"><span class="nonCurrent">Form</span></a>
+    <a href="forms.html"><span class="nonCurrent">Send your personal data to us!</span></a>
+    <a href="about.html"><span class="nonCurrent">About FOSS</span></a>
+    <a href="formulas.html#F"><span class="nonCurrent">Enter your LaTeX formula!</span></a> <br>
+    <a href="https://www.fsf.org/" target="_blank"><span class="exo"><img src="images/fsf.png" alt="" width="200px"></span></a>
+</div>
+    <h2>Here we have LaTeX formulas!</h2>
+    <div class="formulas">
+    <h4>Pi funciton</h4>
+    <p>
+        \[\Pi(x) = \int_0^\infty t^x e^{-t} dt\]
+    </p>
+    <h4>Si function</h4>
+    <p>
+        \[ \operatorname{Si}{(x)} = \int_0^x \frac{\sin t}{t} dt\]
+    </p>
+    <h4>Tetration</h4>
+    <p>\[^b a = a^{a^ {\cdots ^a}}\]</p>
+    <h4>Riemann integral</h4>
+    <p>
+        \[ \sigma = \sum_{i=1}^{n} f(x_i) \Delta x_i \]
+    </p>
+    <h4>Derivative</h4>
+    <p>
+        \[ \frac{df(x)}{dx} = \lim_{\Delta x \rightarrow 0} \frac{f(x + \Delta x) - f(x)}{\Delta x} \]
+    </p>
+    <h4>Integral</h4>
+    <p>
+        \[ F(x) = \int f(x) dx \]
+    </p>
+    <h4>Euler's number</h4>
+    <p>
+        \[ e=\lim _{n\to \infty }\left(1+{\frac {1}{n}}\right)^{n} \]
+    </p>
+    <h4>Pi</h4>
+    <p>
+        \[
+        \displaystyle
+
+        \]
+        \[
+        \pi = \int_{-1}^{1} \frac{dx}{\sqrt{1 - x^2}}
+        \]
+    </p>
+    <h4>Quaternions</h4>
+    <p>
+        \[ i^2 = j^2 = k^2 = ijk = 1 \]
+        \[ q = a + bi + cj + dk \]
+    </p>
+    <h4>Input-output model</h4>
+    <p>
+        x <sub>i</sub> = total output from i branch <br>
+        x <sub>ij</sub> = output from i branch for j branch <br>
+        y <sub>i</sub> = final demand for products from i branch <br>
+        Balance ratios:
+    </p>
+    <p>
+        \[
+        \begin{cases}
+        x_1 = x_{11} + x_{12} + \cdots + x_{1n} + y_1 \\
+        x_1 = x_{21} + x_{22} + \cdots + x_{2n} + y_2 \\
+        \cdots \cdots \cdots \cdots \cdots \cdots \cdots \cdots \cdots \cdots \\
+        x_n = x_{n1} + x_{n2} + \cdots + x_{nn} +y_{n} \\
+        \end{cases}
+        \]
+    </p>
+    <h4 onclick="addFormula()" id="F">Enter your formula!</h4>
+        <input type="text" id="formula" onkeydown=
+                "if(event.key === 'Enter') addFormula()">
+        <p id="script">Your formula will be here!</p>
+    <h4 onclick="document.getElementById('script').innerHTML = ''">
+        Clear my formulas!
+    </h4>
+    </div>
+</body>
+</html>
