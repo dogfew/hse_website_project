@@ -101,4 +101,7 @@ h3 {
     margin-bottom: 32px;
 }
 
-
+a {
+    text-decoration: none;
+    color: black;
+}
